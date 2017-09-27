@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAF-DevEnv", "WpfApp1\FAF-DevEnv.csproj", "{CDB3B008-C669-4EC8-B44A-77DDBB2428DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FAF-DevEnv", "FAF-DevEnv\FAF-DevEnv.csproj", "{CDB3B008-C669-4EC8-B44A-77DDBB2428DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4ADED6BB-116A-4870-8319-4CE83D1CF72C}
+		SolutionGuid = {EFCCB9FF-9226-4994-B5C1-49D8DBE78B0B}
 	EndGlobalSection
 EndGlobal

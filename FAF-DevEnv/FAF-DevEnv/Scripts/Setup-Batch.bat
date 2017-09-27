@@ -1,5 +1,4 @@
-@echo off
-setlocal
+
 
 ::set "psCommand="(new-object -COM 'Shell.Application')^
 ::.BrowseForFolder(0,'Please choose a destination folder to install the FAF Client Development Environment.',0,0).self.path""
@@ -26,6 +25,7 @@ setlocal
 ::	echo endlocal
 ::	echo pause
 ::) > StartClient.bat
-
-"C:\Program Files\Git\git-bash.exe" %~dp0Setup-Bash.sh !folder!\client
+@echo off
+setlocal enabledelayedexpansion
+"C:\Program Files\Git\git-bash.exe" %~dp0Setup-Bash.sh %1
 endlocal

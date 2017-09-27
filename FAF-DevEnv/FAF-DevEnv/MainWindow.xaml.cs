@@ -20,10 +20,15 @@ namespace FAFDevEnv
 {
     public partial class MainWindow : Window
     {
+        #region Initialization
+
         public MainWindow()
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
+
+        #endregion
 
         #region Methods
 
@@ -31,44 +36,19 @@ namespace FAFDevEnv
         {
             using (FolderBrowserDialog browser = new FolderBrowserDialog())
             {
-                DialogResult result = browser.ShowDialog();  
+                DialogResult result = browser.ShowDialog(this as IWin32Window);  
                 
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     return browser.SelectedPath;
                 }
-                else { return @"C:\"; }
+                else { return textboxFilePath.Text; }
             }
         }
 
         #endregion
-
 
         #region Events
-
-        private void buttonBrowse_Click(object sender, RoutedEventArgs e)
-        {
-            textboxFilePath.Text = RetrieveFilePath();
-        }
-
-        #endregion
-
-        private void buttonCreatEnv_Click(object sender, RoutedEventArgs e)
-        {
-            //Possibly skip the silly batch scripts all together with https://stackoverflow.com/questions/38880561/open-git-bash-process-without-window
-            String filePath = textboxFilePath.Text.Trim();
-            if (Directory.Exists(filePath))
-            {
-                ProcessStartInfo procInfo = new ProcessStartInfo()
-                {
-                    FileName = Directory.GetCurrentDirectory() + @"\scripts\Setup-Batch.bat",
-                    CreateNoWindow = true,
-                    Arguments = String.Format(@"{0}", filePath)
-                };
-
-                Process.Start(procInfo);
-            }
-        }
 
         private void rect_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -84,5 +64,39 @@ namespace FAFDevEnv
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void buttonDownloadGIT_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://git-scm.com/download/win");
+        }
+
+        private void buttonDownloadPy_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://www.python.org/downloads/");
+        }
+
+        private void buttonBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            textboxFilePath.Text = RetrieveFilePath();
+        }
+
+        private void buttonCreatEnv_Click(object sender, RoutedEventArgs e)
+        {
+            //Possibly skip the silly batch scripts all together with https://stackoverflow.com/questions/38880561/open-git-bash-process-without-window
+            String filePath = textboxFilePath.Text.Trim();
+            if (Directory.Exists(filePath) && !Directory.Exists(filePath + @"\client"))
+            {
+                ProcessStartInfo procInfo = new ProcessStartInfo()
+                {
+                    FileName = Directory.GetCurrentDirectory() + @"\scripts\Setup-Batch.bat",
+                    CreateNoWindow = true,
+                    Arguments = String.Format(@"{0}", filePath)
+                };
+
+                Process.Start(procInfo);
+            }
+        }
+
+        #endregion
     }
 }

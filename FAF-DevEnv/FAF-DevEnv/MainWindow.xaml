@@ -71,8 +71,8 @@
                 <Label x:Name="labelFilePath" Foreground="White" Padding="0,0,0,0" Margin="0,0,1,103">
                     <TextBlock Text="For this installer to create the development environment correctly, you must have 'Git For Windows' and 'Python 3+' installed. If you do not have either of these programs links are provided by the buttons below. Once these programs are installed, choose a filepath to install the FAF Client development environment, and then click 'Create Environment.'" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.478,2.188" TextWrapping="Wrap" TextAlignment="Center" Width="397" Height="81"/>
                 </Label>
-                <Button Content="Git For Windows" HorizontalAlignment="Left" Margin="99,86,0,0" VerticalAlignment="Top" Width="98" Background="Black" Foreground="White"/>
-                <Button Content="Python 3+" HorizontalAlignment="Left" Margin="202,86,0,0" VerticalAlignment="Top" Width="98" Foreground="White" Background="Black"/>
+                <Button Name="buttonDownloadGIT" Content="Git For Windows" HorizontalAlignment="Left" Margin="99,86,0,0" VerticalAlignment="Top" Width="98" Background="Black" Foreground="White" Click="buttonDownloadGIT_Click"/>
+                <Button Name="buttonDownloadPy" Content="Python 3+" HorizontalAlignment="Left" Margin="202,86,0,0" VerticalAlignment="Top" Width="98" Foreground="White" Background="Black" Click="buttonDownloadPy_Click"/>
                 <Label x:Name="labelNotes" Foreground="White" Padding="0,0,0,0" VerticalContentAlignment="Center" Margin="4,110,298,56">
                     <TextBlock Text="Installation Path: " RenderTransformOrigin="0.5,0.534" Height="22" />
                 </Label>

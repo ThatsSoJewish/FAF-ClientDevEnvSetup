@@ -1,7 +1,6 @@
 #!/bin/sh
 
 FilePath=("$@")
-
 echo ------------------------------------------------------------
 echo Changing Directory to $FilePath
 echo ------------------------------------------------------------
@@ -13,7 +12,7 @@ echo ------------------------------------------------------------
 git clone https://github.com/FAForever/client.git
 
 echo ------------------------------------------------------------
-echo Changing Directory to "$FilePath\client"
+echo Changing Directory to "$FilePath"
 echo ------------------------------------------------------------
 cd "$FilePath\client"
 
