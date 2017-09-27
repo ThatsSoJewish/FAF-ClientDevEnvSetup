@@ -1,0 +1,15 @@
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\bin\Debug\Scripts\Setup-Batch.bat
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\bin\Debug\Scripts\StartClient.sh
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\MainWindow.baml
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\App.g.cs
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.g.resources
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\FAF-DevEnv.csproj.GenerateResource.Cache
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\FAF-DevEnv.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
+C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb

@@ -13,9 +13,9 @@ echo ------------------------------------------------------------
 git clone https://github.com/FAForever/client.git
 
 echo ------------------------------------------------------------
-echo Changing Directory to "$FilePath/client"
+echo Changing Directory to "$FilePath\client"
 echo ------------------------------------------------------------
-cd "$FilePath/client"
+cd "$FilePath\client"
 
 echo ------------------------------------------------------------
 echo Creating Virtual Environment
@@ -25,7 +25,7 @@ python -m venv clientvenv
 echo ------------------------------------------------------------
 echo Activating Virtual Environment 
 echo ------------------------------------------------------------
-source c:/users/admin/desktop/client/clientvenv/scripts/activate
+source clientvenv/scripts/activate
 
 echo ------------------------------------------------------------
 echo Installing PyQT5
