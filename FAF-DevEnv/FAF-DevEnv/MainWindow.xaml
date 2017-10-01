@@ -49,14 +49,6 @@
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="0" />
     </WindowChrome.WindowChrome>
     <Grid Background="Black">
-        <Popup Name="popupFiles" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="187" IsOpen="false" OpacityMask="Black" PlacementTarget="{Binding ElementName= FAFLogo}" >
-            <Grid Background="Black" Margin="0,0,0,0" Height="187" VerticalAlignment="Top">
-                <Label Height="42" VerticalAlignment="Top">
-                    <TextBlock Name="labelPopupText" TextWrapping="Wrap" Background="Black" Foreground="White" Text="Choose The Installation you would like to build" HorizontalAlignment="center" TextAlignment="Center" Width="161"/>
-                </Label>
-                <ListBox Name="lstboxInstallPaths" Background="Black" Foreground="White" Margin="0,42,0,0" MouseDoubleClick="popupFiles_lstboxInstallPaths_MouseDoubleClick"/>
-            </Grid>
-        </Popup>
         <Rectangle Name="TopBar" Fill="Black" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" MouseLeftButtonDown="rect_MouseLeftButtonDown" />
         <Label x:Name="labelHeader" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Padding="5,0,0,0" VerticalContentAlignment="Center">
             <TextBlock Text="FAF Client - Development Environment" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -92,6 +84,14 @@
                 <Button Name="buttonLaunchClient" Content="Launch Client" HorizontalAlignment="Left" Margin="274,160,0,0" VerticalAlignment="Top" Width="118" Background="Black" Foreground="White" Click="buttonLaunchBuild_Click"/>
             </Grid>
         </Grid>
+        <Popup Name="popupFiles" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="187" IsOpen="false" OpacityMask="Black" PlacementTarget="{Binding ElementName= FAFLogo}" >
+            <Grid Background="Black" Margin="0,0,0,0" Height="187" VerticalAlignment="Top">
+                <Label Height="42" VerticalAlignment="Top">
+                    <TextBlock Name="labelPopupText" TextWrapping="Wrap" Background="Black" Foreground="White" Text="Choose The Installation you would like to build" HorizontalAlignment="center" TextAlignment="Center" Width="161"/>
+                </Label>
+                <ListBox Name="lstboxInstallPaths" Background="Black" Foreground="White" Margin="0,42,0,0" MouseDoubleClick="popupFiles_lstboxInstallPaths_MouseDoubleClick"/>
+            </Grid>
+        </Popup>
     </Grid>
 </Window>
 

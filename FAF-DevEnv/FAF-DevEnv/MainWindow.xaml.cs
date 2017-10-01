@@ -41,8 +41,9 @@ namespace FAFDevEnv
                strBashPathX64 = @"C:\Program Files\Git\bin\bash.exe",
                strBashPathX86 = @"C:/Program Files (x86)/Git/bin/bash.exe",
                strInstalledDirsPath = Directory.GetCurrentDirectory() + @"\createdDirs.txt",
-               strInstallScriptPath = Directory.GetCurrentDirectory() + @"\scripts\Setup-Bash.sh";
-        
+               strInstallScriptPath = Directory.GetCurrentDirectory() + @"\scripts\Setup-Bash.sh",
+               strLogFilePath = Directory.GetCurrentDirectory() + @"\Log.txt";
+
         Boolean bashPathExists = false,
                 installPathExists = false,
                 clienDirNotCreated = false;
@@ -57,7 +58,7 @@ namespace FAFDevEnv
             InitializeComponent();
 
             CheckForGitBash();
-            
+
             if (File.Exists(strInstalledDirsPath))
             {
                 using (StreamReader reader = new StreamReader(strInstalledDirsPath))
@@ -80,8 +81,8 @@ namespace FAFDevEnv
         {
             using (FolderBrowserDialog browser = new FolderBrowserDialog())
             {
-                DialogResult result = browser.ShowDialog(this as IWin32Window);  
-                
+                DialogResult result = browser.ShowDialog(this as IWin32Window);
+
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     return browser.SelectedPath;
@@ -124,7 +125,6 @@ namespace FAFDevEnv
         {
             Process proc;
             ProcessStartInfo procInfo;
-            String strProcOutput;
 
             if (bashPathExists)
             {
@@ -142,7 +142,9 @@ namespace FAFDevEnv
                 };
 
                 proc = Process.Start(procInfo);
-                strProcOutput = proc.StandardOutput.ReadToEnd();
+                proc.OutputDataReceived += (sender, args) => LogLine(args.Data);
+                proc.BeginOutputReadLine();
+                //strProcOutput = proc.StandardOutput.ReadToEnd();
 
                 proc.WaitForExit();
 
@@ -150,8 +152,17 @@ namespace FAFDevEnv
             }
         }
 
+        private void LogLine(String logLine)
+        {
+            using (StreamWriter stream = new StreamWriter(strLogFilePath, false))
+            {
+                stream.WriteLine(stream.NewLine + " " + logLine);
+            }
+        }
+
         protected void SaveInstallDirectory()
         {
+            List<String> lstPaths;
             String strPathsCSV;
 
             if (!File.Exists(strInstalledDirsPath))
@@ -163,16 +174,24 @@ namespace FAFDevEnv
             {
                 strPathsCSV = readText.ReadToEnd().Trim();
             }
-
-            using (StreamWriter stream = new StreamWriter(strInstalledDirsPath, false))
+            
+            using (StreamReader reader = new StreamReader(strInstalledDirsPath))
             {
-                if (!String.IsNullOrEmpty(strPathsCSV))
-                {
-                    strPathsCSV += ",";
-                }
+                lstPaths = reader.ReadToEnd().Split(',').Select(x => x.Trim()).ToList();
+            }
 
-                strPathsCSV += strInstallationPath;
-                stream.Write(strPathsCSV);
+            if (!lstPaths.Contains(strInstallationPath.Trim()))
+            {
+                using (StreamWriter stream = new StreamWriter(strInstalledDirsPath, false))
+                {
+                    if (!String.IsNullOrEmpty(strPathsCSV))
+                    {
+                        strPathsCSV += ",";
+                    }
+
+                    strPathsCSV += strInstallationPath.Trim();
+                    stream.Write(strPathsCSV);
+                }
             }
         }
 
@@ -225,14 +244,14 @@ namespace FAFDevEnv
 
         private void buttonLaunchBuild_Click(object sender, RoutedEventArgs e)
         {
-            String[] strsfilePaths;
+            List<String> strsfilePaths;
 
             using (StreamReader reader = new StreamReader(strInstalledDirsPath))
             {
-                strsfilePaths = reader.ReadToEnd().Split(',');
+                strsfilePaths = reader.ReadToEnd().Split(',').Select(x => x.Trim()).ToList();
             }
-
-            switch (strsfilePaths.Length)
+            
+            switch (strsfilePaths.Count)
             {
                 case 0:
                     #region
