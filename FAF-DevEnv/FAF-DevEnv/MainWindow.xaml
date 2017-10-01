@@ -49,7 +49,15 @@
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="0" />
     </WindowChrome.WindowChrome>
     <Grid Background="Black">
-        <Rectangle Fill="Black" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" MouseLeftButtonDown="rect_MouseLeftButtonDown" />
+        <Popup Name="popupFiles" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="187" IsOpen="false" OpacityMask="Black" PlacementTarget="{Binding ElementName= FAFLogo}" >
+            <Grid Background="Black" Margin="0,0,0,0" Height="187" VerticalAlignment="Top">
+                <Label Height="42" VerticalAlignment="Top">
+                    <TextBlock Name="labelPopupText" TextWrapping="Wrap" Background="Black" Foreground="White" Text="Choose The Installation you would like to build" HorizontalAlignment="center" TextAlignment="Center" Width="161"/>
+                </Label>
+                <ListBox Name="lstboxInstallPaths" Background="Black" Foreground="White" Margin="0,42,0,0" MouseDoubleClick="popupFiles_lstboxInstallPaths_MouseDoubleClick"/>
+            </Grid>
+        </Popup>
+        <Rectangle Name="TopBar" Fill="Black" HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" MouseLeftButtonDown="rect_MouseLeftButtonDown" />
         <Label x:Name="labelHeader" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Padding="5,0,0,0" VerticalContentAlignment="Center">
             <TextBlock Text="FAF Client - Development Environment" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Label>
@@ -66,7 +74,7 @@
             </Grid>
         </Button>
         <Grid Margin="0,25,0,0">
-            <Image Source="/Resources/faf-logo.png" Margin="0,10,0,208" RenderTransformOrigin="0.511,0.355" />
+            <Image Name="FAFLogo" Source="/Resources/faf-logo.png" Margin="0,10,0,208" RenderTransformOrigin="0.511,0.355" />
             <Grid Background="Black" Margin="0,201,0,0" >
                 <Label x:Name="labelFilePath" Foreground="White" Padding="0,0,0,0" Margin="0,0,1,103">
                     <TextBlock Text="For this installer to create the development environment correctly, you must have 'Git For Windows' and 'Python 3+' installed. If you do not have either of these programs links are provided by the buttons below. Once these programs are installed, choose a filepath to install the FAF Client development environment, and then click 'Create Environment.'" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.478,2.188" TextWrapping="Wrap" TextAlignment="Center" Width="397" Height="81"/>
@@ -76,10 +84,12 @@
                 <Label x:Name="labelNotes" Foreground="White" Padding="0,0,0,0" VerticalContentAlignment="Center" Margin="4,110,298,56">
                     <TextBlock Text="Installation Path: " RenderTransformOrigin="0.5,0.534" Height="22" />
                 </Label>
-                <TextBox Name="textboxFilePath" HorizontalAlignment="Left" Height="17" Margin="7,131,0,0" TextWrapping="NoWrap" Text="C:\" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="338" RenderTransformOrigin="0.117,0.647" FontSize="12"/>
-                <Button Content="Browse" HorizontalAlignment="Left" Margin="350,131,0,0" VerticalAlignment="Top" Width="42" Height="17" FontSize="10" RenderTransformOrigin="0.5,0.5" Padding="0,0,0,0" Background="Black" Foreground="White" Click="buttonBrowse_Click"/>
-                <Button Content="Create Environment" HorizontalAlignment="Left" Margin="7,160,0,0" VerticalAlignment="Top" Width="118" Background="Black" Foreground="White" Click="buttonCreatEnv_Click"/>
-                <Button Content="Launch Client" HorizontalAlignment="Left" Margin="274,160,0,0" VerticalAlignment="Top" Width="118" Background="Black" Foreground="White"/>
+                <TextBox Name="textboxFilePath" HorizontalAlignment="Left" Height="17" Margin="7,131,0,0" TextWrapping="NoWrap" Text="C:\" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="338" RenderTransformOrigin="0.117,0.647" 
+                         FontSize="12"/>
+                <Button Name="buttonBrowse" Content="Browse" HorizontalAlignment="Left" Margin="350,131,0,0" VerticalAlignment="Top" Width="42" Height="17" FontSize="10" RenderTransformOrigin="0.5,0.5" Padding="0,0,0,0" Background="Black" 
+                        Foreground="White" Click="buttonBrowse_Click"/>
+                <Button Name="buttonCreateEnv" Content="Create Environment" HorizontalAlignment="Left" Margin="7,160,0,0" VerticalAlignment="Top" Width="118" Background="Black" Foreground="White" Click="buttonCreatEnv_Click"/>
+                <Button Name="buttonLaunchClient" Content="Launch Client" HorizontalAlignment="Left" Margin="274,160,0,0" VerticalAlignment="Top" Width="118" Background="Black" Foreground="White" Click="buttonLaunchBuild_Click"/>
             </Grid>
         </Grid>
     </Grid>

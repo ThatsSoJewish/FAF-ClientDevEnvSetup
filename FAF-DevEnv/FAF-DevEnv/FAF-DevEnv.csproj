@@ -93,11 +93,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Scripts\Setup-Bash.sh" />
-    <None Include="Scripts\Setup-Batch.bat">
+    <None Include="Scripts\Setup-Bash.sh">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts\StartClient.bat" />
     <None Include="Scripts\StartClient.sh">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -13,7 +13,7 @@ C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\FAF-DevEnv.csproj.Generate
 C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\FAF-DevEnv.csproj.CoreCompileInputs.cache
 C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\ADMIN\source\repos\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
-D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\bin\Debug\Scripts\Setup-Batch.bat
+D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\bin\Debug\Scripts\Setup-Bash.sh
 D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\bin\Debug\Scripts\StartClient.sh
 D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\bin\Debug\FAFDevEnv.exe.config
 D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\bin\Debug\FAFDevEnv.exe
