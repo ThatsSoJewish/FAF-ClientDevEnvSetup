@@ -29,6 +29,12 @@ namespace FAFDevEnv
             public const String LaunchBuild = "StartClient";
         }
 
+        public static class FileBrowserModes
+        {
+            public const String Install = "INSTALLPATH";
+            public const String ExistingInstall = "EXISTINGINSTALL";
+        }
+
         #endregion
 
         #region Members
@@ -77,7 +83,7 @@ namespace FAFDevEnv
 
         #region Methods
 
-        protected String PromptUserForInstallPath()
+        protected String ShowFileBrowser(String Mode)
         {
             using (FolderBrowserDialog browser = new FolderBrowserDialog())
             {
@@ -87,7 +93,33 @@ namespace FAFDevEnv
                 {
                     return browser.SelectedPath;
                 }
-                else { return textboxFilePath.Text; }
+                else
+                {
+                    switch (Mode.ToUpper())
+                    {
+                        case FileBrowserModes.Install:
+                            #region
+                            {
+                                return textboxFilePath.Text;
+                            }
+                            #endregion
+
+                        case FileBrowserModes.ExistingInstall:
+                            #region
+                            {
+                                popupFiles.IsOpen = false;
+                                return "CANCEL";
+                            }
+                            #endregion
+
+                        default:
+                            #region
+                            {
+                                return browser.SelectedPath;
+                            }
+                            #endregion
+                    }
+                }
             }
         }
 
@@ -117,8 +149,12 @@ namespace FAFDevEnv
 
         protected void LaunchClientBuild(String strClientSourceDirectory)
         {
-            String strArguments = Directory.GetCurrentDirectory() + @"\scripts\" + ScriptNames.LaunchBuild + ".sh" + " " + strClientSourceDirectory;
-            ExecuteBashScript(strArguments);
+            if (Directory.Exists(strClientSourceDirectory) && Directory.Exists(strClientSourceDirectory + @"client\"))
+            {
+                String strArguments = Directory.GetCurrentDirectory() + @"\scripts\" + ScriptNames.LaunchBuild + ".sh" + " " + strClientSourceDirectory;
+                ExecuteBashScript(strArguments);
+            }
+            else { /* TODO: Show popup warning user that the selected directory is not valid. */}
         }
 
         protected void ExecuteBashScript(String strArguments)
@@ -130,21 +166,18 @@ namespace FAFDevEnv
             {
                 #region Create the Client Directory
 
-                //String s = Assembly.GetExecutingAssembly().Location; //testing file path
-
                 procInfo = new ProcessStartInfo
                 {
                     FileName = strBashPath,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    //CreateNoWindow = true,
+                    //CreateNoWindow = true, //Failure with this active
                     Arguments = strArguments
                 };
 
                 proc = Process.Start(procInfo);
                 proc.OutputDataReceived += (sender, args) => LogLine(args.Data);
                 proc.BeginOutputReadLine();
-                //strProcOutput = proc.StandardOutput.ReadToEnd();
 
                 proc.WaitForExit();
 
@@ -160,10 +193,15 @@ namespace FAFDevEnv
             }
         }
 
-        protected void SaveInstallDirectory()
+        protected void SaveInstallDirectory(String strAlternatePath = "")
         {
             List<String> lstPaths;
             String strPathsCSV;
+
+            if (!String.IsNullOrEmpty(strAlternatePath))
+            {
+                strInstallationPath = strAlternatePath;
+            }
 
             if (!File.Exists(strInstalledDirsPath))
             {
@@ -226,7 +264,7 @@ namespace FAFDevEnv
 
         private void buttonBrowse_Click(object sender, RoutedEventArgs e)
         {
-            textboxFilePath.Text = PromptUserForInstallPath();
+            textboxFilePath.Text = ShowFileBrowser(FileBrowserModes.Install);
         }
 
         private void buttonCreatEnv_Click(object sender, RoutedEventArgs e)
@@ -250,22 +288,35 @@ namespace FAFDevEnv
             {
                 strsfilePaths = reader.ReadToEnd().Split(',').Select(x => x.Trim()).ToList();
             }
-            
-            switch (strsfilePaths.Count)
-            {
-                case 0:
-                    #region
-                    {
-                        buttonLaunchClient.IsEnabled = false;
-                        buttonLaunchClient.ToolTip = "There are no client source directories installed.";
-                    }
-                    #endregion
-                    break;
 
-                case 1:
+            lstboxInstallPaths.Items.Clear();
+            foreach (String path in strsfilePaths)
+            {
+                lstboxInstallPaths.Items.Add(path);
+            }
+            lstboxInstallPaths.Items.Add("Locate Existing Directory...");
+
+            popupFiles.IsOpen = true;
+        }
+
+        private void popupFiles_lstboxInstallPaths_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            popupFiles.IsOpen = false;
+            String strSelectedItemText = (sender as System.Windows.Controls.ListBox).SelectedItem.ToString();
+
+            switch (strSelectedItemText.ToUpper().Trim())
+            {
+                case "LOCATE EXISTING DIRECTORY...":
                     #region
                     {
-                        LaunchClientBuild(strsfilePaths[0]);
+                        String directory = ShowFileBrowser(FileBrowserModes.ExistingInstall);
+                        directory = directory.Replace(@"client", "");
+                        
+                        if (directory.ToUpper() != "CANCEL" && Directory.Exists(directory))
+                        {
+                            SaveInstallDirectory(directory);
+                            LaunchClientBuild(directory);
+                        }
                     }
                     #endregion
                     break;
@@ -273,26 +324,14 @@ namespace FAFDevEnv
                 default:
                     #region
                     {
-                        lstboxInstallPaths.Items.Clear();
-                        foreach (String path in strsfilePaths)
+                        if ((sender as System.Windows.Controls.ListBox).SelectedItem != null)
                         {
-                            lstboxInstallPaths.Items.Add(path);
+                            LaunchClientBuild(strSelectedItemText);
+                            popupFiles.IsOpen = false;
                         }
-
-                        popupFiles.IsOpen = true;
                     }
                     #endregion
                     break;
-            }
-        }
-
-        private void popupFiles_lstboxInstallPaths_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            Object SelectedItem = (sender as System.Windows.Controls.ListBox).SelectedItem;
-            if ((sender as System.Windows.Controls.ListBox).SelectedItem != null)
-            {
-                LaunchClientBuild(SelectedItem.ToString());
-                popupFiles.IsOpen = false;
             }
         }
 

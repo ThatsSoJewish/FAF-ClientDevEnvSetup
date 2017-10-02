@@ -28,3 +28,4 @@ D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\obj\Debug\FAF-DevEnv.csproj
 D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\obj\Debug\FAF-DevEnv.csproj.CoreCompileInputs.cache
 D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\obj\Debug\FAFDevEnv.exe
 D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\obj\Debug\FAFDevEnv.pdb
+D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\obj\Debug\FAF-DevEnv.csprojResolveAssemblyReference.cache
