@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="Concuros" Height="368.833" Width="400"
+    Title="Concuros" Height="364.833" Width="400"
     WindowStyle="None"
     WindowState="Normal" 
      ResizeMode="NoResize" BorderThickness="1px" BorderBrush="#FF707070" >
@@ -88,38 +88,7 @@
                 <Path Data="M1,0 M0,3 L6,3" Width="9.311" Height="5" VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="White" StrokeThickness="1" Margin="1.22,4.5,1.469,4.5" Stretch="Fill" RenderTransformOrigin="0.763,0.441"  />
             </Grid>
         </Button>
-        <Grid Margin="0,25,0,0">
-            <Image Name="FAFLogo" Source="/Resources/faf-logo.png" Margin="0,10,0,186" RenderTransformOrigin="0.511,0.355" />
-            <Grid Background="Black" Margin="0,201,0,24" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="273*"/>
-                    <ColumnDefinition Width="125*"/>
-                </Grid.ColumnDefinitions>
-                <Label x:Name="labelFilePath" Foreground="White" Padding="0,0,0,0" Margin="0,-41,1,70" Grid.ColumnSpan="2">
-                    <TextBlock Text="For this installer to create the development environment correctly, you must have 'Git For Windows' and 'Python 3+' installed. If you do not have either of these programs links are provided by the buttons below. Once these programs are installed, choose a filepath to install the FAF Client development environment, and then click 'Create Environment.'" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.478,2.188" TextWrapping="Wrap" TextAlignment="Center" Width="397" Height="90"/>
-                </Label>
-                <Button Name="buttonDownloadGIT" Content="Git For Windows" HorizontalAlignment="Left" Margin="91,47,0,0" VerticalAlignment="Top" Width="98" Click="buttonDownloadGIT_Click" Style="{StaticResource buttonStyle}"/>
-                <Button Name="buttonDownloadPy" Content="Python 3+" HorizontalAlignment="Left" Margin="194,47,0,0" VerticalAlignment="Top" Width="98" Click="buttonDownloadPy_Click" Style="{StaticResource buttonStyle}" Grid.ColumnSpan="2"/>
-                <Label x:Name="labelNotes" Foreground="White" Padding="0,0,0,0" VerticalContentAlignment="Center" Margin="4,70,173,31">
-                    <TextBlock Text="Current Directory: " RenderTransformOrigin="0.5,0.534" Height="16" />
-                </Label>
-                <TextBox Name="textboxFilePath" HorizontalAlignment="Left" Height="17" Width="338" Margin="10,91,0,0" TextWrapping="NoWrap" Text="C:\" VerticalAlignment="Top" VerticalContentAlignment="Center" RenderTransformOrigin="0.117,0.647" 
-                         FontSize="12" Grid.ColumnSpan="2"/>
-                <Button Name="buttonBrowse" Content="Browse" HorizontalAlignment="Left" Height="17" Width="42" Margin="77,91,0,0" VerticalAlignment="Top" FontSize="10" RenderTransformOrigin="0.5,0.5" Padding="0,0,0,0" Click="buttonBrowse_Click" 
-                        Style="{StaticResource buttonStyle}" Grid.Column="1" />
-                <Button Name="buttonCreateEnv" Content="Create Environment" HorizontalAlignment="Left" Width="118" Margin="10,113,0,-16" VerticalAlignment="Top" Click="buttonCreatEnv_Click" Style="{StaticResource buttonStyle}" Height="20"/>
-                <Button Name="buttonLaunchClient" Content="Launch Client" HorizontalAlignment="Left" Margin="1,113,0,-16" VerticalAlignment="Top" Width="118" Click="buttonLaunchBuild_Click" Style="{StaticResource buttonStyle}" Height="20" Grid.Column="1"/>
-            </Grid>
-        </Grid>
-        <Popup Name="popupFiles" HorizontalAlignment="Left" VerticalAlignment="Top" Width="155" Height="173" IsOpen="false" OpacityMask="Black" PlacementTarget="{Binding ElementName= FAFLogo}" Margin="0,-35,0,0" >
-            <Grid Background="Black" Height="173" VerticalAlignment="Top" Margin="0,0,0,0">
-                <Border BorderBrush="#FF707070" BorderThickness="1" />
-                <Label Height="42" VerticalAlignment="Top">
-                    <TextBlock Name="labelPopupText" TextWrapping="Wrap" Background="Black" Foreground="White" Text="Choose the build location" HorizontalAlignment="center" TextAlignment="Center" Width="154"/>
-                </Label>
-                <ListBox Name="lstboxInstallPaths" Background="Black" Foreground="White" Margin="0,25,0,0" MouseDoubleClick="popupFiles_lstboxInstallPaths_MouseDoubleClick"/>
-            </Grid>
-        </Popup>
+        <Frame Name="mainFrame" Content="Frame" HorizontalAlignment="Left" Height="343" Margin="0,20,0,0" VerticalAlignment="Top" Width="398"/>
     </Grid>
 </Window>
 
