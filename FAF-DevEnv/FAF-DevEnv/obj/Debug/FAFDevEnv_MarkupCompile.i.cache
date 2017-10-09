@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Repos\FAF-ClientDevEnvSetup\FAF-DevEnv\FAF-DevEnv\App.xaml
-3862257581
+3-2143364330
 
-12292510990
-14-1175798665
-MainWindow.xaml;Pages\Client-Setup.xaml;Pages\pageClient.xaml;
+12-1428939943
+15-1959659046
+MainWindow.xaml;Pages\pageClient.xaml;Pages\pageFA.xaml;
 
-False
+True
 

@@ -34,9 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>faf_logo_2D4_icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -71,21 +73,21 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Client-Setup.xaml">
+    <Page Include="Pages\pageClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\pageClient.xaml">
+    <Page Include="Pages\pageFA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Client-Setup.xaml.cs">
-      <DependentUpon>Client-Setup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\pageClient.xaml.cs">
       <DependentUpon>pageClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\pageFA.xaml.cs">
+      <DependentUpon>pageFA.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -126,9 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\faf-logo-styled-cropped.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="faf_logo_2D4_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

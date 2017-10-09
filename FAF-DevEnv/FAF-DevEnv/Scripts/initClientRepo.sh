@@ -46,7 +46,17 @@ echo Installing dependencies from Requirements.txt
 echo ------------------------------------------------------------
 pip install -r requirements.txt
 
+echo ------------------------------------------------------------
+echo Downloading the latest 'faf-uid.exe' to the 'lib'
+echo ------------------------------------------------------------
+urls=`curl -s https://api.github.com/repos/FAForever/UID/releases/latest | grep 'browser_' | cut -d\" -f4`
+IFS=' ' read -r -a urlsplit <<< "$urls" 
+cd $filepath/client/lib
+curl -o lib/faf-uid.exe -L "${urlsplit[0]}.exe"
+
 #echo ------------------------------------------------------------
 #echo Adding 'clientvenv/Lib/site-packages/pywin32_system32' to the system path
 #echo ------------------------------------------------------------
 #export PATH="$FilePath/client/clientvenv/Lib/site-packages/pywin32_system32:$PATH"
+
+

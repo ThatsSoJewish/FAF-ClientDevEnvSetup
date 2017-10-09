@@ -10,7 +10,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,6 +22,22 @@ namespace FAFDevEnv
 {
     public partial class MainWindow : Window
     {
+        #region Members
+
+        public static class String_Constants
+        {
+            public static List<String> lstSetPages = new List<String>() { "Client", "FA" };
+
+            public const String strPageClient = "CLIENT";
+            public const String strPageFA = "FA";
+
+        }
+
+        pageClient pageClient = new pageClient();
+        pageFA pageFA = new pageFA();
+
+        #endregion
+
         #region Initialization
 
         public MainWindow()
@@ -30,7 +45,13 @@ namespace FAFDevEnv
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
-            mainFrame.Content = new pageClient();
+            foreach (String page in String_Constants.lstSetPages)
+            {
+                comboPages.Items.Add(page);
+            }
+            comboPages.SelectedIndex = 0;
+
+            mainFrame.Content = pageClient;
         }
 
         #endregion
@@ -53,5 +74,22 @@ namespace FAFDevEnv
         }
 
         #endregion
+
+        private void comboPages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cmb = (sender as ComboBox);
+            String strSelectedPage = cmb.SelectedItem.ToString().ToUpper();
+
+            switch (strSelectedPage)
+            {
+                case String_Constants.strPageClient:
+                    mainFrame.Content = pageClient;
+                    break;
+
+                case String_Constants.strPageFA:
+                    mainFrame.Content = pageFA;
+                    break;
+            }
+        }
     }
 }
